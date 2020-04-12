@@ -730,11 +730,15 @@ NSString *const kXMPPPresence = @"presence";
         [xmlParser setDelegate:self.baseParserDelegate];
         
         
-        if(!self.xmlParser) self.xmlParser=xmlParser;
+        if(!self.xmlParser) {
+            self.xmlParser=xmlParser;
+        }
         else if(!self.xmlParser1) {
+            [self.xmlParser abortParsing];
             self.xmlParser1=xmlParser;
         }
         else  if(!self.xmlParser2) {
+            [self.xmlParser1 abortParsing];
             self.xmlParser2=xmlParser;
         }
         
